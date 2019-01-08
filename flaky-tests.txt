@@ -1,0 +1,48 @@
+2 failing
+
+1) tracing/http client
+       http
+         must trace aborted calls:
+   Error: Could not find an item which matches all the criteria. Got 0 items.[0m[90m
+      at Object.expectOneMatching (test/utils.js:31:11)
+      at /home/travis/build/instana/nodejs-sensor/test/tracing/protocols/http_client/test.js:401:19
+      at tryCatcher (node_modules/bluebird/js/release/util.js:16:23)
+      at Promise._settlePromiseFromHandler (node_modules/bluebird/js/release/promise.js:512:31)
+      at Promise._settlePromise (node_modules/bluebird/js/release/promise.js:569:18)
+      at Promise._settlePromise0 (node_modules/bluebird/js/release/promise.js:614:10)
+      at Promise._settlePromises (node_modules/bluebird/js/release/promise.js:694:18)
+      at _drainQueueStep (node_modules/bluebird/js/release/async.js:138:12)
+      at _drainQueue (node_modules/bluebird/js/release/async.js:131:9)
+      at Async._drainQueues (node_modules/bluebird/js/release/async.js:147:5)
+      at Immediate.Async.drainQueues (node_modules/bluebird/js/release/async.js:17:14)
+
+2) tracing/http client
+  http
+    "after each" hook: bound kill for "must trace aborted calls":
+  Error: Timeout of 60000ms exceeded. For async tests and hooks, ensure "done()" is called; if returning a Promise, ensure it resolves. (/home/travis/build/instana/nodejs-sensor/test/tracing/protocols/http_client/test.js)[0m[90m
+
+=======================================
+
+
+[92m [0m[32m 466 passing[0m[90m (17m)[0m
+[36m [0m[36m 3 pending[0m
+[31m  1 failing[0m
+
+[0m  1) tracing/http client
+       http
+         must trace calls that fail due to timeouts:
+[0m[31m     Error: Could not find an item which matches all the criteria. Got 0 items.[0m[90m
+      at Object.expectOneMatching (test/utils.js:31:11)
+      at /home/travis/build/instana/nodejs-sensor/test/tracing/protocols/http_client/test.js:380:19
+      at tryCatcher (node_modules/bluebird/js/release/util.js:16:23)
+      at Promise._settlePromiseFromHandler (node_modules/bluebird/js/release/promise.js:512:31)
+      at Promise._settlePromise (node_modules/bluebird/js/release/promise.js:569:18)
+      at Promise._settlePromise0 (node_modules/bluebird/js/release/promise.js:614:10)
+      at Promise._settlePromises (node_modules/bluebird/js/release/promise.js:694:18)
+      at _drainQueueStep (node_modules/bluebird/js/release/async.js:138:12)
+      at _drainQueue (node_modules/bluebird/js/release/async.js:131:9)
+      at Async._drainQueues (node_modules/bluebird/js/release/async.js:147:5)
+      at Immediate.Async.drainQueues (node_modules/bluebird/js/release/async.js:17:14)
+[0m
+
+

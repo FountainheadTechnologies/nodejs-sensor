@@ -1,3 +1,5 @@
+/* eslint-disable */
+
 'use strict';
 
 var expect = require('chai').expect;
@@ -12,7 +14,7 @@ var agentControls;
 var ClientControls;
 var ServerControls;
 
-describe('tracing/http client', function() {
+describe.only('tracing/http client', function() {
   if (!supportedVersion(process.versions.node)) {
     return;
   }
@@ -21,6 +23,8 @@ describe('tracing/http client', function() {
   ClientControls = require('./clientControls');
   ServerControls = require('./serverControls');
 
+  console.log('CONFIGURED TIMEOUT', config.getTestTimeout());
+  console.log('USING TIMEOUT', config.getTestTimeout() * 2);
   this.timeout(config.getTestTimeout() * 2);
 
   agentControls.registerTestHooks({
@@ -377,6 +381,7 @@ function registerTests(useHttps) {
       .then(function() {
         return utils.retry(function() {
           return agentControls.getSpans().then(function(spans) {
+            // TODO Flaky: Sometimes we receive 0 spans
             utils.expectOneMatching(spans, function(span) {
               expect(span.n).to.equal('node.http.client');
               expect(span.k).to.equal(cls.EXIT);
@@ -398,6 +403,7 @@ function registerTests(useHttps) {
       .then(function() {
         return utils.retry(function() {
           return agentControls.getSpans().then(function(spans) {
+            // TODO Flaky: Sometimes we receive 0 spans
             utils.expectOneMatching(spans, function(span) {
               expect(span.n).to.equal('node.http.client');
               expect(span.k).to.equal(cls.EXIT);

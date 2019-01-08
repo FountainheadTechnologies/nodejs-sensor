@@ -1,4 +1,4 @@
-/* eslint-disable consistent-return */
+/* eslint-disable */
 
 'use strict';
 
@@ -10,6 +10,8 @@ exports.retry = function retry(fn, time, until) {
   if (time == null) {
     time = config.getTestTimeout() / 2;
   }
+
+  console.log('USING RETRY TIMEOUT', time);
 
   if (until == null) {
     until = Date.now() + time;

@@ -1,3 +1,5 @@
+/* eslint-disable */
+
 'use strict';
 
 var coreHttpModule = require('http');
@@ -33,6 +35,7 @@ exports.init = function() {
 function instrument(coreModule) {
   var originalRequest = coreModule.request;
   coreModule.request = function request() {
+    console.log('XXX http(s).request called');
     var clientRequest;
 
     // When http.request is called with http.request(options, undefined) (happens with request-promise, for example),
@@ -180,10 +183,12 @@ function instrument(coreModule) {
         //
         // On top of this, commonly used HTTP client libraries add additional timeout capabilities based on wall clock
         // time on top of Node.js' timeout capabilities (which typically end in an abort() call).
+        console.log('XXX received HTTP client timeout');
         isTimeout = true;
       });
 
       clientRequest.on('error', function(err) {
+        console.log('XXX received an HTTP client error (timout, aborted, err)', isTimeout, clientRequest.aborted, err);
         var errorMessage = err.message;
         if (isTimeout) {
           errorMessage = 'Timeout exceeded';
@@ -204,6 +209,7 @@ function instrument(coreModule) {
         span.d = Date.now() - span.ts;
         span.error = true;
         span.ec = 1;
+        console.log('XXX transmitting erroneous HTTP span');
         span.transmit();
       });
     });

@@ -8,7 +8,7 @@
   ],
   "scripts": {
     "audit": "npm audit --json | node bin/parse-audit.js",
-    "test": "npm run test:nolint && npm run test:lint",
+    "test": "npm run test:nolint",
     "test:nolint": "NODE_ENV=debug USE_OPENTRACING_DEBUG_IMPL=true npm run test:mocha",
     "test:mocha": "mocha --reporter spec $(find src test -name '*test.js')",
     "test:debug": "WITH_STDOUT=true DEBUG=kafka-node:* npm run test:mocha",

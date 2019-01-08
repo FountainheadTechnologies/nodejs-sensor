@@ -158,7 +158,7 @@ app.get('/abort', function(req, res) {
   setTimeout(function() {
     clientRequest.abort();
     res.sendStatus(200);
-  }, 1500);
+  }, 500);
 });
 
 app.get('/request-malformed-url', function(req, res) {
