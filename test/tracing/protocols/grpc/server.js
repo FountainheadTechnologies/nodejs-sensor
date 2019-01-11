@@ -21,22 +21,6 @@ var PROTO_PATH = path.join(__dirname, 'protos/helloworld.proto');
 
 var server;
 
-// function onExit(callProcessExit) {
-//   console.log('cleaning up');
-//   if (server) {
-//     server.forceShutdown();
-//   }
-//   if (callProcessExit) {
-//     process.exit();
-//   }
-// }
-//
-// process.on('exit', onExit.bind(null, false));
-// process.on('SIGINT', onExit.bind(null, true));
-// process.on('SIGUSR1', onExit.bind(null, true));
-// process.on('SIGUSR2', onExit.bind(null, true));
-// process.on('uncaughtException', onExit.bind(null, true));
-
 switch (PACKAGE_VERSION) {
   case '=1.10.1':
     if (STATIC) {
